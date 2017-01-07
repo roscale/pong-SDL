@@ -7,12 +7,12 @@ class Plate : public Object
 {
 public:
 	static const Vector2D plateSize;
-	
+
 public:
 	Plate(Vector2D newPos);
 
-	void setVelocity(Vector2D newVel);
-	void push(Vector2D newAcc);
+	virtual void update(int delta) override;
+	void edges();
 };
 
 #endif /* end of include guard: PLATE_HPP */

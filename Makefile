@@ -1,7 +1,7 @@
-OBJS = main.cpp Vector2D.cpp Timer.cpp Game.cpp Object.cpp Plate.cpp
+OBJS = main.cpp Vector2D.cpp Timer.cpp Game.cpp Object.cpp Plate.cpp Ball.cpp
 
 CC = g++
-COMPILER_FLAGS = -w -std=c++17 -Iinclude/
+COMPILER_FLAGS = -w -std=c++14 -Iinclude/
 
 LINKER_FLAGS = -lSDL2 -lSDL2pp
 

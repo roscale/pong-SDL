@@ -15,7 +15,8 @@ public:
 	void gameLoop();
 
 	bool handleInput();
-	void update();
+	void update(int delta);
+	void collisions();
 	void render();
 };
 
