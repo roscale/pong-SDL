@@ -14,7 +14,7 @@ protected:
 	Object(Vector2D newPos, Vector2D newSize);
 
 public:
-	virtual void update(int delta);
+	virtual void update();
 	virtual void render();
 	virtual Vector2D getVelocity() const;
 	virtual void setVelocity(Vector2D newVel);

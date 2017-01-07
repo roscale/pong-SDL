@@ -6,9 +6,9 @@ const Vector2D Plate::plateSize {10, 100};
 Plate::Plate(Vector2D newPos) : Object(newPos, plateSize)
 {}
 
-void Plate::update(int delta)
+void Plate::update()
 {
-	Object::update(delta);
+	Object::update();
 	edges();
 }
 

@@ -11,7 +11,7 @@ private:
 public:
 	Ball(Vector2D newPos);
 
-	virtual void update(int delta) override;
+	virtual void update() override;
 	void edges();
 };
 

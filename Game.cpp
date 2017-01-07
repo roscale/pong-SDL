@@ -23,12 +23,12 @@ void Game::gameLoop()
 	{
 		if (handleInput()) break;
 
-		int delta = gTimer.get_ticks();
+		// int delta = gTimer.get_ticks();
 
 		// update(delta);
 		collisions();
-		update(delta);
-		gTimer.start();
+		update();
+		// gTimer.start();
 		render();
 	}
 }
@@ -45,10 +45,10 @@ bool Game::handleInput()
 			switch (e.key.keysym.sym)
 			{
 				case SDLK_UP:
-					objects[0]->setVelocity(Vector2D{0, -30}); break;
+					objects[0]->setVelocity(Vector2D{0, -0.1}); break;
 
 				case SDLK_DOWN:
-					objects[0]->setVelocity(Vector2D{0, 30}); break;
+					objects[0]->setVelocity(Vector2D{0, 0.1}); break;
 			}
 
 		else if (e.type == SDL_KEYUP)
@@ -62,10 +62,10 @@ bool Game::handleInput()
 	return false;
 }
 
-void Game::update(int delta)
+void Game::update()
 {
 	for (auto &object : objects)
-		object->update(delta);
+		object->update();
 }
 
 void Game::collisions()

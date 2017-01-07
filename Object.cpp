@@ -6,9 +6,9 @@ Object::Object(Vector2D newPos, Vector2D newSize)
 	: pos{newPos}, size{newSize}
 {}
 
-void Object::update(int delta)
+void Object::update()
 {
-	pos += vel * (delta / 100.0f);
+	pos += vel;// * (delta / 100.0f);
 	rect = SDL2pp::Rect{ pos.x, pos.y, size.x, size.y };
 }
 

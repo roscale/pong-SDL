@@ -5,12 +5,12 @@ const int Ball::r{10};
 
 Ball::Ball(Vector2D newPos) : Object(newPos, Vector2D{r, r})
 {
-	vel = {-20, 10};
+	vel = {-0.15, 0.07};
 }
 
-void Ball::update(int delta)
+void Ball::update()
 {
-	Object::update(delta);
+	Object::update();
 	edges();
 }
 
