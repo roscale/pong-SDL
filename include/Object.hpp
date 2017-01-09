@@ -16,11 +16,15 @@ protected:
 public:
 	virtual void update();
 	virtual void render();
-	virtual Vector2D getVelocity() const;
-	virtual void setVelocity(Vector2D newVel);
-	virtual void push(Vector2D newAcc);
 
 	SDL2pp::Rect getRect() const;
+	void calculateRect();
+
+	Vector2D getPosition() const;
+	void setPosition(Vector2D newPos);
+
+	Vector2D getVelocity() const;
+	void setVelocity(Vector2D newVel);
 };
 
 #endif /* end of include guard: OBJECT_HPP */

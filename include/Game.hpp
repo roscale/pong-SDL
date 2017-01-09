@@ -4,19 +4,26 @@
 #include <vector>
 #include <memory>
 #include "Object.hpp"
+#include "Plate.hpp"
+#include "Ball.hpp"
+#include "AI.hpp"
 
 class Game
 {
 private:
-	std::vector<std::unique_ptr<Object>> objects;
+	std::unique_ptr<Plate> playerOnePlate;
+	std::unique_ptr<Plate> playerTwoPlate;
+	std::unique_ptr<Ball> ball;
+
+	std::unique_ptr<AI> ai;
 
 public:
 	Game();
 	void gameLoop();
 
 	bool handleInput();
-	void update();
 	void collisions();
+	void update();
 	void render();
 };
 

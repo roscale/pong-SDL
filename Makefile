@@ -1,4 +1,4 @@
-OBJS = main.cpp Vector2D.cpp Timer.cpp Game.cpp Object.cpp Plate.cpp Ball.cpp
+OBJS = main.cpp Vector2D.cpp Timer.cpp Game.cpp Object.cpp Plate.cpp Ball.cpp AI.cpp
 
 CC = g++
 COMPILER_FLAGS = -w -std=c++14 -Iinclude/

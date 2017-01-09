@@ -5,16 +5,13 @@
 
 Game::Game()
 {
-	int margin = 20;
+	int plateMargin = 20;
 
-	auto playerOnePlate = std::make_unique<Plate>(Vector2D{margin, gWindow.GetHeight()/2});
-	auto playerTwoPlate = std::make_unique<Plate>(Vector2D{gWindow.GetWidth()-(Plate::plateSize.x + margin), gWindow.GetHeight()/2});
-	auto ball = std::make_unique<Ball>(Vector2D{gWindow.GetWidth()/2, gWindow.GetHeight()/2});
-	objects.push_back(std::move(playerOnePlate));
-	objects.push_back(std::move(playerTwoPlate));
-	objects.push_back(std::move(ball));
+	playerOnePlate = std::make_unique<Plate>(Vector2D{plateMargin, gWindow.GetHeight()/2});
+	playerTwoPlate = std::make_unique<Plate>(Vector2D{gWindow.GetWidth()-(Plate::plateSize.x + plateMargin), gWindow.GetHeight()/2});
+	ball = std::make_unique<Ball>(Vector2D{gWindow.GetWidth()/2, gWindow.GetHeight()/2});
 
-	gTimer.start();
+	ai = std::make_unique<AI>(playerTwoPlate.get(), ball.get());
 }
 
 void Game::gameLoop()
@@ -22,14 +19,15 @@ void Game::gameLoop()
 	while (true)
 	{
 		if (handleInput()) break;
+		ai->play();
 
-		// int delta = gTimer.get_ticks();
-
-		// update(delta);
 		collisions();
 		update();
+
 		// gTimer.start();
 		render();
+
+		SDL_Delay(10);
 	}
 }
 
@@ -45,10 +43,10 @@ bool Game::handleInput()
 			switch (e.key.keysym.sym)
 			{
 				case SDLK_UP:
-					objects[0]->setVelocity(Vector2D{0, -0.1}); break;
+					playerOnePlate->moveUp(); break;
 
 				case SDLK_DOWN:
-					objects[0]->setVelocity(Vector2D{0, 0.1}); break;
+					playerOnePlate->moveDown(); break;
 			}
 
 		else if (e.type == SDL_KEYUP)
@@ -56,7 +54,7 @@ bool Game::handleInput()
 		{
 			case SDLK_UP:
 			case SDLK_DOWN:
-				objects[0]->setVelocity(Vector2D{0, 0}); break;
+				playerOnePlate->stopMoving(); break;
 		}
 	}
 	return false;
@@ -64,17 +62,18 @@ bool Game::handleInput()
 
 void Game::update()
 {
-	for (auto &object : objects)
-		object->update();
+	playerOnePlate->update();
+	playerTwoPlate->update();
+	ball->update();
 }
 
 void Game::collisions()
 {
-	auto &ball = objects[2];
-	if (objects[0]->getRect().Intersects(ball->getRect()) ||
-		 objects[1]->getRect().Intersects(ball->getRect()))
+	if (playerOnePlate->getRect().Intersects(ball->getRect()) ||
+		 playerTwoPlate->getRect().Intersects(ball->getRect()))
 	{
-		 ball->setVelocity(ball->getVelocity() * Vector2D{-1, 1});
+		// ball->setPosition(ball->getPosition() - ball->getVelocity());
+		ball->setVelocity(ball->getVelocity() * Vector2D{-1, 1});
 	}
 }
 
@@ -83,8 +82,9 @@ void Game::render()
 	gRenderer.SetDrawColor(0, 0, 0);
 	gRenderer.Clear();
 
-	for (auto &object : objects)
-		object->render();
+	playerOnePlate->render();
+	playerTwoPlate->render();
+	ball->render();
 
 	gRenderer.Present();
 }

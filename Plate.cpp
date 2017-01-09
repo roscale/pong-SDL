@@ -14,9 +14,24 @@ void Plate::update()
 
 void Plate::edges()
 {
+	bool dirty = false;
+
 	if (pos.y < 0)
+	{
 		pos.y = 0;
+		dirty = true;
+	}
 
 	else if (pos.y > gWindow.GetHeight() - size.y)
+	{
 		pos.y = gWindow.GetHeight() - size.y;
+		dirty = true;
+	}
+
+	if (dirty)
+		calculateRect();
 }
+
+void Plate::moveUp() { setVelocity(Vector2D{0, -movingSpeed}); }
+void Plate::moveDown() { setVelocity(Vector2D{0, movingSpeed}); }
+void Plate::stopMoving() { setVelocity(Vector2D{0, 0}); }

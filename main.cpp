@@ -10,15 +10,13 @@
 
 SDL sdl(SDL_INIT_VIDEO);
 Window gWindow("Pong", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_SHOWN);
-Renderer gRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED);
+Renderer gRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 Timer gTimer;
 
 int main()
 {
 	Game game;
-
 	game.gameLoop();
-	SDL_Delay(20);
 
 	return 0;
 }
