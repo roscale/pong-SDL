@@ -1,7 +1,7 @@
 #include "Vector2D.hpp"
 
-Vector2D::Vector2D(float vx, float vy) : x{vx}, y{vy}
-{}
+Vector2D::Vector2D(float vx, float vy) : x{vx}, y{vy} {}
+// Vector2D::Vector2D(SDL2pp::Point p) : x{p.GetX()}, y{p.GetY()} {}
 
 bool operator==(const Vector2D &v1, const Vector2D &v2) { return (v1.x == v2.x) && (v1.y == v2.y); }
 bool operator!=(const Vector2D &v1, const Vector2D &v2) { return !(v1 == v2); }

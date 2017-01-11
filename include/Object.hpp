@@ -25,6 +25,7 @@ public:
 
 	Vector2D getVelocity() const;
 	void setVelocity(Vector2D newVel);
+	Vector2D getCentroid() const;
 };
 
 #endif /* end of include guard: OBJECT_HPP */

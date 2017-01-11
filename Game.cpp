@@ -69,12 +69,22 @@ void Game::update()
 
 void Game::collisions()
 {
-	if (playerOnePlate->getRect().Intersects(ball->getRect()) ||
-		 playerTwoPlate->getRect().Intersects(ball->getRect()))
+	auto processColisionWith = [&](Plate *plate)
 	{
-		// ball->setPosition(ball->getPosition() - ball->getVelocity());
-		ball->setVelocity(ball->getVelocity() * Vector2D{-1, 1});
-	}
+		float yVelocity = (ball->getCentroid().y - plate->getCentroid().y) * 0.3f;
+		std::cout << yVelocity << '\n';
+
+		//Be effective only on edges
+		yVelocity = (abs(yVelocity) > 5) ? yVelocity : ball->getVelocity().y;
+
+		ball->setVelocity(Vector2D{ -ball->getVelocity().x, yVelocity });
+	};
+
+	if (playerOnePlate->getRect().Intersects(ball->getRect()))
+		processColisionWith(playerOnePlate.get());
+
+	else if (playerTwoPlate->getRect().Intersects(ball->getRect()))
+		processColisionWith(playerTwoPlate.get());
 }
 
 void Game::render()
