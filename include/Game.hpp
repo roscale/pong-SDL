@@ -22,8 +22,8 @@ public:
 	void gameLoop();
 
 	bool handleInput();
-	void collisions();
 	void update();
+	void collisions();
 	void render();
 };
 

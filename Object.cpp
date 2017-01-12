@@ -8,8 +8,7 @@ Object::Object(Vector2D newPos, Vector2D newSize)
 
 void Object::update()
 {
-	pos += vel;// * (delta / 100.0f);
-	calculateRect();
+	setPosition(getPosition() + vel);
 }
 
 void Object::render()
@@ -20,10 +19,12 @@ void Object::render()
 
 SDL2pp::Rect Object::getRect() const { return rect; }
 void Object::calculateRect() { rect = SDL2pp::Rect{ pos.x, pos.y, size.x, size.y }; }
+
 Vector2D Object::getCentroid() const { return pos + size/2; }
-
 Vector2D Object::getPosition() const { return pos; };
-void Object::setPosition(Vector2D newPos) { pos = newPos; }
-
-Vector2D Object::getVelocity() const { return vel; }
-void Object::setVelocity(Vector2D newVel) { vel = newVel; }
+void Object::setPosition(Vector2D newPos)
+{
+	last_pos = pos;
+	pos = newPos;
+	calculateRect();
+}

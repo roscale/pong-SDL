@@ -10,21 +10,22 @@ protected:
 	Vector2D pos;
 	Vector2D size;
 	SDL2pp::Rect rect {pos.x, pos.y, size.x, size.y};
-	Vector2D vel {0, 0};
 	Object(Vector2D newPos, Vector2D newSize);
+	void calculateRect();
 
 public:
+	Vector2D vel {0, 0};
+	Vector2D last_pos;
+
 	virtual void update();
 	virtual void render();
 
 	SDL2pp::Rect getRect() const;
-	void calculateRect();
 
 	Vector2D getPosition() const;
 	void setPosition(Vector2D newPos);
+	void push(Vector2D force);
 
-	Vector2D getVelocity() const;
-	void setVelocity(Vector2D newVel);
 	Vector2D getCentroid() const;
 };
 

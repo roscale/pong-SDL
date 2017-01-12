@@ -32,6 +32,6 @@ void Plate::edges()
 		calculateRect();
 }
 
-void Plate::moveUp() { setVelocity(Vector2D{0, -movingSpeed}); }
-void Plate::moveDown() { setVelocity(Vector2D{0, movingSpeed}); }
-void Plate::stopMoving() { setVelocity(Vector2D{0, 0}); }
+void Plate::moveUp() { vel = Vector2D{0, -movingSpeed}; }
+void Plate::moveDown() { vel = Vector2D{0, movingSpeed}; }
+void Plate::stopMoving() { vel = Vector2D{0, 0}; }

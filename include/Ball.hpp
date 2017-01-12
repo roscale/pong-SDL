@@ -6,7 +6,7 @@
 class Ball : public Object
 {
 private:
-	static const int r;
+	static const int d;
 
 public:
 	Ball(Vector2D newPos);

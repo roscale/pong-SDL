@@ -1,11 +1,11 @@
 #include "Ball.hpp"
 #include "globals.hpp"
 
-const int Ball::r{10};
+const int Ball::d{10};
 
-Ball::Ball(Vector2D newPos) : Object(newPos, Vector2D{r, r})
+Ball::Ball(Vector2D newPos) : Object(newPos, Vector2D{d, d})
 {
-	vel = {-10, 5};
+	vel = {-5, 0};
 }
 
 void Ball::update()
@@ -16,10 +16,16 @@ void Ball::update()
 
 void Ball::edges()
 {
-	if (pos.y < 0 || pos.y > gWindow.GetHeight() - r)
+	if (pos.y < 0 || pos.y > gWindow.GetHeight() - d)
+	{
+		setPosition(last_pos);
 		vel.y *= -1;
+	}
 
 	// Debugging
-	if (pos.x < 0 || pos.x > gWindow.GetWidth() - r)
-		vel.x *= -1;
+	if (pos.x < 0 || pos.x > gWindow.GetWidth() - d)
+	{
+		vel = {-5, 0};
+		setPosition(Vector2D{gWindow.GetWidth()/2, gWindow.GetHeight()/2});
+	}
 }
