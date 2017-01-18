@@ -6,13 +6,13 @@
 class Ball : public Object
 {
 private:
-	static const int d;
+	static const int radius;
 
 public:
 	Ball(Vector2D newPos);
 
-	virtual void update() override;
-	void edges();
+	int getRadius() const;
+	void reset();
 };
 
 #endif /* end of include guard: BALL_HPP */

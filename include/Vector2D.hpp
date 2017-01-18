@@ -2,7 +2,7 @@
 #define VECTOR2D_HPP
 
 #include <iostream>
-// #include <SDL2pp/SDL2pp.hh>
+#include <SDL2pp/SDL2pp.hh>
 
 class Vector2D
 {
@@ -11,6 +11,7 @@ public:
 	float y;
 
 	Vector2D(float vx = 0, float vy = 0);
+	Vector2D(SDL2pp::Point p);
 
 	float length() const;
 	Vector2D& normalize();

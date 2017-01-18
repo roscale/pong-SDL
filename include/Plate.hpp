@@ -2,18 +2,18 @@
 #define PLATE_HPP
 
 #include "Object.hpp"
+#include "Score.hpp"
 
 class Plate : public Object
 {
 public:
 	static const Vector2D plateSize;
-	static const int movingSpeed = 5;
+	static const int movingSpeed = 7;
 
 public:
 	Plate(Vector2D newPos);
 
-	virtual void update() override;
-	void edges();
+	Score score;
 
 	void moveUp();
 	void moveDown();

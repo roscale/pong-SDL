@@ -2,6 +2,7 @@
 #include <cmath>
 
 Vector2D::Vector2D(float vx, float vy) : x{vx}, y{vy} {}
+Vector2D::Vector2D(SDL2pp::Point p) : x{p.GetX()}, y{p.GetY()} {}
 
 float Vector2D::length() const { return sqrt(x*x + y*y); }
 

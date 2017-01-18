@@ -8,12 +8,12 @@ class Object
 {
 protected:
 	Vector2D pos;
-	Vector2D size;
 	SDL2pp::Rect rect {pos.x, pos.y, size.x, size.y};
 	Object(Vector2D newPos, Vector2D newSize);
 	void calculateRect();
 
 public:
+	Vector2D size;
 	Vector2D vel {0, 0};
 	Vector2D last_pos;
 
